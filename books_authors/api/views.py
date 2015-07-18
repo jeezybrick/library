@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .serializers import GenreSerializer
+
+from books_authors.library.models import Genre
+
+
+class GenreViewSet(viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
