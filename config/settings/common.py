@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'mptt',
+    'rest_framework',
 )
 
 # Apps specific for this project go here.
@@ -47,6 +48,7 @@ LOCAL_APPS = (
     'books_authors.users',  # custom users app
     # Your stuff: custom apps go here
     'books_authors.library',
+    'books_authors.api',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
