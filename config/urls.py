@@ -22,8 +22,10 @@ urlpatterns = [
     url(r'^users/', include("books_authors.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
-    # Your stuff: custom urls includes go here
-
+    # REST Framework
+    url(r'api', include('books_authors.api.urls', namespace="api")),
+    url(r'api-auth', include('rest_framework.urls',
+        namespace="rest_framework")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
