@@ -39,12 +39,14 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'mptt',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'books_authors.users',  # custom users app
     # Your stuff: custom apps go here
+    'books_authors.library',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
