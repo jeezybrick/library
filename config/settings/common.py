@@ -103,7 +103,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default="postgres:///books_authors"),
+    'default': env.db("DATABASE_URL", default="postgres://postgres:123@127.0.0.1:5432/books_authors"),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
