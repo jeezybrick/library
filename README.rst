@@ -1,5 +1,5 @@
 Library
-==============================
+=======
 
 Simple library app powered by Django and REST API
 
@@ -81,7 +81,7 @@ It's time to write the code!!!
 
 
 Deployment
-------------
+----------
 
 It is possible to deploy to Heroku or to your own server by using Dokku, an open source Heroku clone.
 
@@ -159,7 +159,7 @@ You can then deploy by running the following commands.
 When deploying via Dokku make sure you backup your database in some fashion as it is NOT done automatically.
 
 Settings
-------------
+--------
 
 books_authors relies extensively on environment settings which **will not work with Apache/mod_wsgi setups**. It has been deployed successfully with both Gunicorn/Nginx and even uWSGI/Nginx.
 
