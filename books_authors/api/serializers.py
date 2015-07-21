@@ -12,12 +12,6 @@ class GenreSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Author
-        fields = ('id', 'name', 'slug',)
-
-
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(queryset=Author.objects.all(), slug_field='slug')
     genre = serializers.SlugRelatedField(queryset=Genre.objects.all(), many=True, slug_field='slug')
@@ -25,6 +19,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id', 'title', 'author', 'annotation', 'genre', 'slug',)
+        read_only_fields = ('id',)
 
     def create(self, validated_data):
         genre_data = validated_data.pop('genre')
@@ -32,3 +27,11 @@ class BookSerializer(serializers.ModelSerializer):
         Book.object.create(genre=genre, **validated_data)
 
         return Book
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Author
+        fields = ('id', 'name', 'books', 'slug',)
+        depth = 1
