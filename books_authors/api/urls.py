@@ -11,5 +11,5 @@ router.register(r'books', views.BookViewSet)
 router.register(r'genres', views.GenreViewSet)
 
 urlpatterns = [
-    url(r'^/', include(router.urls)),
+    url(r'^', include(router.urls)),
 ]
