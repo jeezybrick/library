@@ -260,4 +260,10 @@ LOGGING = {
     }
 }
 
-# Your common stuff: Below this line define 3rd party library settings
+# REST Framework settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
