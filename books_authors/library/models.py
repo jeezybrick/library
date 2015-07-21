@@ -29,7 +29,7 @@ class Genre(MPTTModel):
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(Author, related_name='books')
     annotation = models.TextField()
     genre = models.ManyToManyField(Genre)
     slug = models.SlugField(unique=True)
