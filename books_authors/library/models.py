@@ -29,9 +29,9 @@ class Genre(MPTTModel):
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(Author, related_name='books')
+    author = models.ForeignKey(Author, related_name='books_by_author')
     annotation = models.TextField()
-    genre = models.ManyToManyField(Genre)
+    genre = models.ManyToManyField(Genre, related_name='books_by_genre')
     slug = models.SlugField(unique=True)
 
     def __unicode__(self):
