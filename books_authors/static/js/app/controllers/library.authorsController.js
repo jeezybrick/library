@@ -2,12 +2,16 @@
 
 library.controller('authorsCtrl', function ($scope, $http) {
     $scope.authors = [];
-    $scope.reset = function (form) {
+    $scope.reset = function () {
         $scope.formName = '';
         $scope.formSlug = '';
-        form.$setPristine();
     };
     $scope.addAuthor = function () {
+        $http
+            .post('/api/authors/')
+            .success(function (data) {
+                console.log('YAY! ' + data);
+            });
         console.log('Added!');
         $scope.authors.push({
             name: $scope.formName
