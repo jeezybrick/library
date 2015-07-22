@@ -8,7 +8,7 @@ class GenreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Genre
-        fields = ('id', 'name', 'parent', 'slug', 'books_by_genre',)
+        fields = ('id', 'name', 'parent', 'slug',)
         read_only_fields = ('id',)
         depth = 1
 
@@ -27,5 +27,5 @@ class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Author
-        fields = ('id', 'name', 'books_by_author', 'slug',)
+        fields = ('id', 'name', 'slug',)
         depth = 1
