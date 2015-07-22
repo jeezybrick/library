@@ -4,7 +4,7 @@ from .forms import AuthorForm
 
 
 class AddAuthorView(TemplateView):
-    template_name = 'add_author_form.html'
+    template_name = 'author_view.html'
 
     def get_context_data(self, **kwargs):
         context = super(AddAuthorView, self).get_context_data(**kwargs)
