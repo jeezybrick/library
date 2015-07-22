@@ -1,0 +1,16 @@
+<form name="author_form">
+    <div class="form-group">
+        <label for="id_author_name">Name:</label>
+        <input id="id_author_name" type="text" name="formName" class="form-control" ng-model="formName"
+               required>
+    </div>
+    <div class="form-group">
+        <label for="id_author_slug">Slug:</label>
+        <input id="id_author_slug" type="text" name="formSlug" class="form-control" ng-model="formSlug"
+               required>
+    </div>
+    <div class="form-group">
+        <input id="id_author_slug" type="submit" value="Add new author" class="btn btn-primary"
+               ng-click="addAuthor(author_form)" ng-disabled="author_form.$invalid">
+    </div>
+</form>
