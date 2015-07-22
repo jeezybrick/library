@@ -41,6 +41,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'mptt',
     'rest_framework',
+    'djangular',
 )
 
 # Apps specific for this project go here.
