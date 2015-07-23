@@ -28,6 +28,9 @@
                     {% endverbatim %}
                     {% if user.is_staff %}
                         <td>
+                            <button ng-click="toggleEditForm(true, author)"
+                                    class="btn btn-primary btn-xs"><span
+                                    class="glyphicon glyphicon-pencil"></span></button>
                             <button ng-click="deleteAuthor($index, author)"
                                     class="btn btn-primary btn-xs"><span
                                     class="glyphicon glyphicon-remove-circle"></span></button>
@@ -56,8 +59,18 @@
                                required>
                     </div>
 
-                    <input type="submit" class="btn btn-primary" value="Add new author"
+                    <div class="form-group">
+                        <input ng-show="formEditState" type="submit" class="btn btn-primary" value="Edit this author"
+                               ng-disabled="add_author_form.$invalid" ng-click="editAuthor()">
+                    </div>
+                    <div class="form-group">
+                        <input ng-show="formEditState" type="submit" class="btn btn-info btn-sm"
+                               value="Switch back to Adding new author"
+                               ng-disabled="add_author_form.$invalid" ng-click="toggleEditForm(false)">
+
+                        <input ng-hide="formEditState" type="submit" class="btn btn-primary" value="Add new author"
                            ng-disabled="add_author_form.$invalid" ng-click="addAuthor()">
+                    </div>
                 </form>
             {% endblock author_form %}
         </div>
