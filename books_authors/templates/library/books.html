@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block angular %}
+    {{ block.super }}
+    <script src="{% static 'js/app/controllers/library.booksController.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row" ng-controller="booksCtrl">
+        <div class="col-md-6 col-md-offset-3">
+
+        </div>
+    </div>
+{% endblock content %}
