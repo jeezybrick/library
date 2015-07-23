@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles crispy_forms_tags %}
+
+{% block content %}
+    <div class="row" ng-controller="authorsCtrl">
+        <div class="col-md-4 col-md-offset-4">
+            <h4 class="text-center">List of all authors</h4>
+            <hr>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        {% if user.is_staff %}
+                            <td>Admin actions:</td>
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody class="table-stripped">
+                    <tr ng-repeat="author in authors">
+                        {% verbatim %}
+                        <td>
+                            {{$index + 1}}
+                        </td>
+                        <td>
+                            {{ author.name }}
+                        </td>
+                        {% endverbatim %}
+                        {% if user.is_staff %}
+                            <td>
+                                <button ng-click="deleteAuthor($index, author, author.id)"
+                                        class="btn btn-primary btn-xs"><span
+                                        class="glyphicon glyphicon-remove-circle"></span></button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    </tbody>
+                </table>
+
+        </div>
+        {% if user.is_staff %}
+        <div class="col-md-2 col-md-offset-2">
+            <h4>Admin tools:</h4>
+            <hr>
+            {% block author_form %}
+                <form name="add_author_form" novalidate>
+
+                    <div class="form-group">
+                        <label class="control-label" for="id_name">Name</label>
+                        <input type="text" maxlength="20" id="id_name" class="form-control" name="name" ng-model="name"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="id_slug">Slug</label>
+                        <input type="text" maxlength="50" id="id_slug" class="form-control" name="slug" ng-model="slug"
+                               required>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Add new author"
+                           ng-disabled="add_author_form.$invalid" ng-click="addAuthor()">
+                </form>
+            {% endblock author_form %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock content %}

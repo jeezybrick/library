@@ -2,30 +2,37 @@
 
 library.controller('authorsCtrl', function ($scope, $http) {
     $scope.authors = [];
-    $scope.reset = function () {
-        $scope.formName = '';
-        $scope.formSlug = '';
+    $scope.reset_form = function () {
+        $scope.name = '';
+        $scope.slug = '';
     };
     $scope.addAuthor = function () {
+        var in_data = {
+            name: $scope.name,
+            slug: $scope.slug
+        };
+
         $http
-            .post('/api/authors/')
-            .success(function (data) {
-                console.log('YAY! ' + data);
+            .post('/api/authors/?format=json', in_data)
+            .success(function (out_data) {
+                $scope.authors.push(out_data);
+                $scope.reset_form();
             });
-        console.log('Added!');
-        $scope.authors.push({
-            name: $scope.formName
-        });
-        $scope.reset();
+    };
+    $scope.deleteAuthor = function (index, element, id) {
+        $http
+            .delete('/api/authors/' + id + '/')
+            .success(function () {
+                $scope.authors.splice(index, 1);
+            });
     };
 
-    $scope.reset();
+    $scope.reset_form();
 
     $http
-        .get('/api/authors/')
+        .get('/api/authors/?format=json')
         .success(function (data) {
             for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
                 $scope.authors.push(data[i]);
             }
         });
