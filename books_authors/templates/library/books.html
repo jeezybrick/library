@@ -13,7 +13,8 @@
 
             <div class="book-item" ng-repeat="book in books">
                 {% verbatim %}
-                    <h5 class="text-center text-uppercase">{{ book.title }} by {{ book.author }}</h5><br>
+                    <h5 class="text-center text-uppercase"><a href="#">{{ book.title }}</a> by <a
+                            href="#">{{ book.author }}</a></h5>
                     <p class="text-center">Genres: <span ng-repeat="genre in book.genre">{{ genre }}<span
                             ng-show="!$last">, </span></span></p>
                     <hr>
