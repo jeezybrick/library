@@ -45,7 +45,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
-              <li><a href="{% url 'library:authors' %}">Home</a></li>
+              <li><a href="{% url 'library:authors' %}">{% trans 'Authors' %}</a></li>
+              <li><a href="{% url 'library:authors' %}">{% trans 'Books' %}</a></li>
+              <li><a href="{% url 'library:authors' %}">{% trans 'Genres' %}</a></li>
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
@@ -70,7 +72,7 @@
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+
       {% endblock content %}
 
     </div> <!-- /container -->

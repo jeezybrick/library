@@ -28,12 +28,9 @@
                     {% endverbatim %}
                     {% if user.is_staff %}
                         <td>
-                            <a ng-click="toggleEditForm(true, $index, author)"
-                                    class="btn btn-primary btn-xs"><span
-                                    class="glyphicon glyphicon-pencil"></span></a>
-                            <a ng-click="deleteAuthor($index, author)"
-                                    class="btn btn-primary btn-xs"><span
-                                    class="glyphicon glyphicon-remove-circle"></span></a>
+                            <a href="#" style="color: grey; padding-right: 5px"
+                               ng-click="toggleEditForm(true, $index, author)">Edit</a>
+                            <a href="#" ng-click="deleteAuthor($index, author)">Delete</a>
                         </td>
                     {% endif %}
                 </tr>
@@ -43,8 +40,7 @@
         </div>
         {% if user.is_staff %}
         <div class="col-md-2 col-md-offset-2">
-            <h4>Admin tools:</h4>
-            <hr>
+            <h4 class="text-center page-header">Admin tools:</h4>
             {% block author_form %}
                 <form name="add_author_form" novalidate>
 
