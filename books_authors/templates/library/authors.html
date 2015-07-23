@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block angular %}
+    {{ block.super }}
+    <script src="{% static 'js/app/controllers/library.authorsController.js' %}"></script>
+{% endblock angular %}
+
 {% block content %}
     <div class="row" ng-controller="authorsCtrl">
         <div class="col-md-4 col-md-offset-4">

@@ -22,7 +22,6 @@
     {% block angular %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
         <script src="{% static 'js/app/library.js' %}"></script>
-        <script src="{% static 'js/app/controllers/library.authorsController.js' %}"></script>
     {% endblock angular %}
 
   </head>
@@ -46,7 +45,7 @@
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
               <li><a href="{% url 'library:authors' %}">{% trans 'Authors' %}</a></li>
-              <li><a href="{% url 'library:authors' %}">{% trans 'Books' %}</a></li>
+              <li><a href="{% url 'library:books' %}">{% trans 'Books' %}</a></li>
               <li><a href="{% url 'library:authors' %}">{% trans 'Genres' %}</a></li>
               <li><a href="/api/">API</a></li>
           </ul>
@@ -84,16 +83,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
-      <!-- Latest JQuery -->
+        <!-- Latest JQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-      <!-- Your stuff: Third-party javascript libraries go here -->
-
-      <!-- place project specific Javascript in this file -->
-    {% endblock %}
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    {% endblock javascript %}
   </body>
 </html>
  
