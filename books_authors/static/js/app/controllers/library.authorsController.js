@@ -19,9 +19,9 @@ library.controller('authorsCtrl', function ($scope, $http) {
                 $scope.reset_form();
             });
     };
-    $scope.deleteAuthor = function (index, element, id) {
+    $scope.deleteAuthor = function (index, element) {
         $http
-            .delete('/api/authors/' + id + '/')
+            .delete('/api/authors/' + element.id + '/')
             .success(function () {
                 $scope.authors.splice(index, 1);
             });
