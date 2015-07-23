@@ -8,7 +8,7 @@ class Author(models.Model):
     slug = models.SlugField(unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.pk, self.name)
+        return self.name
 
 
 class Genre(MPTTModel):
