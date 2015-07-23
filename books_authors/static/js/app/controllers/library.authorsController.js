@@ -26,7 +26,7 @@ library.controller('authorsCtrl', function ($scope, $http) {
         }
     };
 
-    // GET method
+    // GET list of available authors
     $http
         .get('/api/authors/?format=json')
         .success(function (data) {

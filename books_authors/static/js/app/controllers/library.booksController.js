@@ -9,7 +9,7 @@ library.controller('booksCtrl', function ($scope, $http) {
     $scope.genre = [];
     $scope.slug = '';
 
-    // GET method
+    // GET list of available books
     $http
         .get('/api/books/?format=json')
         .success(function (out_data) {
