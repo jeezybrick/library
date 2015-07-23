@@ -10,11 +10,13 @@ library.controller('authorsCtrl', function ($scope, $http) {
     };
     $scope.formEditState = false;
     $scope.currentlyEditAuthor = null;
+    $scope.currentIndex = 0;
 
     // Edit switcher
-    $scope.toggleEditForm = function (state, author) {
+    $scope.toggleEditForm = function (state, index, author) {
         $scope.formEditState = state;
         $scope.currentlyEditAuthor = author;
+        $scope.currentIndex = index;
 
         if (state === false) {
             $scope.resetForm();
@@ -59,18 +61,16 @@ library.controller('authorsCtrl', function ($scope, $http) {
 
     // PUT method
     $scope.editAuthor = function () {
-        console.log($scope.currentlyEditAuthor);
         var in_data = {
             name: $scope.name,
             slug: $scope.slug
         };
-        console.log(in_data);
-        console.log('----------------------');
-        console.log('http://localhost:8000/api/authors/' + $scope.currentlyEditAuthor.id + '/?format=json');
         $http
             .put('/api/authors/' + $scope.currentlyEditAuthor.id + '/?format=json', in_data)
             .success(function (out_data) {
-                console.log('success! ' + JSON.stringify(out_data));
+                $scope.authors[$scope.currentIndex].name = out_data.name;
+                $scope.authors[$scope.currentIndex].slug = out_data.slug;
+                $scope.toggleEditForm(false);
             })
     };
 
