@@ -5,15 +5,9 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^$',
-        TemplateView.as_view(template_name='pages/home.html'), name="home"
-        ),
-    url(r'^about/$',
-        TemplateView.as_view(template_name='pages/about.html'), name="about"
-        ),
+                  url('^', include('books_authors.library.urls', namespace='library')),
 
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
@@ -21,7 +15,7 @@ urlpatterns = [
     # User management
     url(r'^users/', include("books_authors.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
-                  # WORK DUD WTF
+
                   # REST Framework:
                   url(r'api/', include('books_authors.api.urls', namespace="api")),
                   url(r'api-auth/', include('rest_framework.urls', namespace="rest_framework")),

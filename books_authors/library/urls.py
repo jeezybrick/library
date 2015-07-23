@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import AddAuthorView
+from .views import AuthorsView
 
 urlpatterns = [
-    url(r'add_author/$', AddAuthorView.as_view(), name='add_author'),
+    url(r'^$', AuthorsView.as_view(), name='authors'),
 ]
