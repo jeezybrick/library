@@ -1,5 +1,5 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
-<html lang="en" ng-app="libraryApp">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -20,13 +20,17 @@
     {% endblock %}
 
     {% block angular %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+        <script src="{% static 'js/libs/angular/angular.js' %}"></script>
+        <script src="{% static 'js/libs/angular-route/angular-route.js' %}"></script>
         <script src="{% static 'js/app/library.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.authorsController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.booksController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.genresController.js' %}"></script>
     {% endblock angular %}
 
   </head>
 
-  <body>
+  <body ng-app="libraryApp">
 
     <div class="navbar navbar-default">
         <div class="container">
@@ -44,9 +48,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
-              <li><a href="{% url 'library:authors' %}">{% trans 'Authors' %}</a></li>
-              <li><a href="{% url 'library:books' %}">{% trans 'Books' %}</a></li>
-              <li><a href="{% url 'library:authors' %}">{% trans 'Genres' %}</a></li>
+              <li><a href="#/authors">{% trans 'Authors' %}</a></li>
+              <li><a href="#/books">{% trans 'Books' %}</a></li>
+              <li><a href="#/genres">{% trans 'Genres' %}</a></li>
               <li><a href="/api/">API</a></li>
               <li><a href="/admin/">Admin</a></li>
           </ul>

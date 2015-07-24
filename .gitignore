@@ -49,6 +49,9 @@ nosetests.xml
 # npm
 node_modules/
 
+# bower
+bower_components/
+
 # Compass
 .sass-cache
 

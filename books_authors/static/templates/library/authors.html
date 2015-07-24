@@ -1,0 +1,30 @@
+<div class="row" ng-controller="authorsCtrl">
+    <div class="col-md-4 col-md-offset-4">
+        <h4 class="text-center page-header">List of all authors</h4>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <td>#</td>
+                <td>Name</td>
+            </tr>
+            </thead>
+            <tbody class="table-stripped">
+            <tr ng-repeat="author in authors">
+                <td>
+                    {{$index + 1}}
+                </td>
+                <td>
+                    <a href="#">{{ author.name }}</a>
+                </td>
+                <td>
+                    <a href="#" style="color: grey; padding-right: 5px"
+                       ng-click="toggleEditForm(true, $index, author)">Edit</a>
+                    <a href="#" ng-click="deleteAuthor($index, author)">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

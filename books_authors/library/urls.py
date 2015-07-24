@@ -1,9 +1,7 @@
 from django.conf.urls import url
 
-from .views import AuthorsView, BooksView
+from .views import MainView
 
 urlpatterns = [
-    url(r'^$', AuthorsView.as_view()),
-    url(r'^authors/$', AuthorsView.as_view(), name='authors'),
-    url(r'^books/$', BooksView.as_view(), name='books'),
+    url(r'^$', MainView.as_view()),
 ]
