@@ -23,6 +23,16 @@ class BookSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
+class BookAddSerializer(serializers.ModelSerializer):
+    author = serializers.SlugRelatedField(queryset=Author.objects.all(), slug_field='slug')
+    genre = serializers.SlugRelatedField(queryset=Genre.objects.all(), many=True, slug_field='slug')
+
+    class Meta:
+        model = Book
+        fields = ('id', 'title', 'author', 'annotation', 'genre', 'slug',)
+        read_only_fields = ('id',)
+
+
 class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
