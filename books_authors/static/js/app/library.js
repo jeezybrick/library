@@ -2,14 +2,14 @@
 
 var library = angular.module('libraryApp', ['ngRoute']);
 
-library
-    .config(function ($httpProvider) {
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-    });
+library.config(function ($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+});
 
 library.config(function ($routeProvider) {
+    // List routers
     $routeProvider.when('/authors', {
         templateUrl: '/static/templates/library/authors.html'
     });
@@ -18,6 +18,11 @@ library.config(function ($routeProvider) {
     });
     $routeProvider.when('/genres', {
         templateUrl: '/static/templates/library/genres.html'
-    })
+    });
+
+    // Detail routers
+    $routeProvider.when('/authors/:id', {
+        templateUrl: '/static/templates/library/author_detail.html'
+    });
 
 });

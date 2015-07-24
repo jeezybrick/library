@@ -15,12 +15,7 @@
                     {{$index + 1}}
                 </td>
                 <td>
-                    <a href="#">{{ author.name }}</a>
-                </td>
-                <td>
-                    <a href="#" style="color: grey; padding-right: 5px"
-                       ng-click="toggleEditForm(true, $index, author)">Edit</a>
-                    <a href="#" ng-click="deleteAuthor($index, author)">Delete</a>
+                    <a href="#/authors/{{ author.id }}">{{ author.name }}</a>
                 </td>
             </tr>
             </tbody>
