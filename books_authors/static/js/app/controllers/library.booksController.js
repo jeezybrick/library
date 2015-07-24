@@ -19,5 +19,4 @@ library.controller('booksCtrl', function ($scope, $http) {
                 console.log(out_data[i]);
             }
         });
-
 });
