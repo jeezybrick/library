@@ -22,6 +22,7 @@ class BookViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = Book.objects.all()
         serializer = BookSerializer(queryset, many=True)
+
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):

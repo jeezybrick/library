@@ -5,14 +5,14 @@ from .models import Author, Book, Genre
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', ), }
+    pass
 
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('author', 'title', ), }
+    pass
 
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', ), }
+    pass
