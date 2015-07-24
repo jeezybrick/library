@@ -3,8 +3,8 @@
         <h4 class="text-center page-header">List of all books</h4>
 
         <div class="book-item" ng-repeat="book in books">
-            <h5 class="text-center text-uppercase"><a href="#">{{ book.title }}</a> by <a
-                    href="">{{ book.author }}</a></h5>
+            <h5 class="text-center text-uppercase"><a href="#/books/{{ book.id }}">{{ book.title }}</a> by <a
+                    href="#/authors/{{ book.author.id }}">{{ book.author }}</a></h5>
 
             <p class="text-center">Genres: <span ng-repeat="genre in book.genre">{{ genre }}<span
                     ng-show="!$last">, </span></span>
