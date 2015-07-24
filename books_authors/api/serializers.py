@@ -15,11 +15,12 @@ class GenreSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
+    author_id = serializers.PrimaryKeyRelatedField(read_only=True)
     genre = serializers.StringRelatedField(read_only=True, many=True)
 
     class Meta:
         model = Book
-        fields = ('id', 'title', 'author', 'annotation', 'genre', 'slug',)
+        fields = ('id', 'title', 'author', 'author_id', 'annotation', 'genre', 'slug',)
         read_only_fields = ('id',)
 
 

@@ -4,10 +4,11 @@
 
         <div class="book-item" ng-repeat="book in books">
             <h5 class="text-center text-uppercase"><a href="#/books/{{ book.id }}">{{ book.title }}</a> by <a
-                    href="#/authors/{{ book.author.id }}">{{ book.author }}</a></h5>
+                    href="#/authors/{{ book.author_id }}">{{ book.author }}</a></h5>
 
-            <p class="text-center">Genres: <span ng-repeat="genre in book.genre">{{ genre }}<span
-                    ng-show="!$last">, </span></span>
+            <p class="text-center">Genres: <span ng-repeat="genre in book.genre"><a
+                    href="#/genres/{{ genre.id }}">{{ genre }}</a><span
+                    ng-hide="$last">, </span></span>
             </p>
             <hr>
         </div>

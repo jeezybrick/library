@@ -27,5 +27,8 @@ library.config(function ($routeProvider) {
     $routeProvider.when('/books/:id', {
         templateUrl: '/static/templates/library/book_detail.html'
     });
+    $routeProvider.when('/genres/:id', {
+        templateUrl: '/static/templates/library/genre_detail.html'
+    });
 
 });
