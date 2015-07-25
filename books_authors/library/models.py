@@ -5,10 +5,9 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class Author(models.Model):
     name = models.CharField(max_length=20)
-    slug = models.SlugField(unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.pk, self.name)
+        return self.name
 
 
 class Genre(MPTTModel):
@@ -18,7 +17,6 @@ class Genre(MPTTModel):
                             blank=True,
                             related_name='children'
                             )
-    slug = models.SlugField(unique=True)
 
     class MPTTMeta:
         order_insertion_by = ['name', ]
@@ -32,7 +30,6 @@ class Book(models.Model):
     author = models.ForeignKey(Author, related_name='books_by_author')
     annotation = models.TextField()
     genre = models.ManyToManyField(Genre, related_name='books_by_genre')
-    slug = models.SlugField(unique=True)
 
     def __unicode__(self):
         return self.title

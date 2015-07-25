@@ -1,5 +1,5 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -15,27 +15,28 @@
 
     {% block css %}
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    <!-- Your stuff: Third-party css libraries go here -->
-
-    <!-- This file store project specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+        <!-- link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css">
     {% endblock %}
 
     {% block angular %}
-        <script src="{% static 'js/angular/angular.js' %}"></script>
-    {% endblock %}
+        <script src="{% static 'js/libs/angular/angular.js' %}"></script>
+        <script src="{% static 'js/libs/angular-route/angular-route.js' %}"></script>
+        <script src="{% static 'js/app/library.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.authorsController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.booksController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.genresController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.authorDetailController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.bookDetailController.js' %}"></script>
+        <script src="{% static 'js/app/controllers/library.genreDetailController.js' %}"></script>
+    {% endblock angular %}
 
   </head>
 
-  <body>
+  <body ng-app="libraryApp">
 
     <div class="navbar navbar-default">
-      <div class="container-fluid">
+        <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
@@ -44,14 +45,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">books_authors</a>
+            <a class="navbar-brand" href="/">Library</a>
         </div>
           
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
+              <li><a href="#/authors">{% trans 'Authors' %}</a></li>
+              <li><a href="#/books">{% trans 'Books' %}</a></li>
+              <li><a href="#/genres">{% trans 'Genres' %}</a></li>
+              <li><a href="/api/">API</a></li>
+              <li><a href="/admin/">Admin</a></li>
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
@@ -76,7 +80,7 @@
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+
       {% endblock content %}
 
     </div> <!-- /container -->
@@ -87,16 +91,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
-      <!-- Latest JQuery -->
+        <!-- Latest JQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-      <!-- Your stuff: Third-party javascript libraries go here -->
-
-      <!-- place project specific Javascript in this file -->
-      <script src="{% static 'js/project.js' %}"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     {% endblock javascript %}
   </body>
 </html>
