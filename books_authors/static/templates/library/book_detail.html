@@ -1,6 +1,6 @@
 <div class="row" ng-controller="bookDetailCtrl">
     <div class="col-md-6 col-md-offset-3">
-        <h4 class="text-center page-header">{{ book.title }} by {{ book.author }}</h4>
+        <h4 class="text-center page-header">{{ book.title }} by <a href="#/authors/{{ book.author.id }}">{{ book.author.name }}</a></h4>
 
         <p class="text-center">Annotation</p>
 
@@ -8,7 +8,7 @@
             {{ book.annotation }}
         </p>
 
-        <p class="text-center">Genres: <span ng-repeat="genre in book.genre">{{ genre }}<span ng-hide="$last">, </span></span>
+        <p class="text-center">Genres: <span ng-repeat="genre in book.genre">{{ genre.name }}<span ng-hide="$last">, </span></span>
         </p>
     </div>
 </div>
