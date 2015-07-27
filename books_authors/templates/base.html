@@ -51,20 +51,21 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
-              <li><a href="#/authors">{% trans 'Authors' %}</a></li>
-              <li><a href="#/books">{% trans 'Books' %}</a></li>
-              <li><a href="#/genres">{% trans 'Genres' %}</a></li>
-              <li><a href="/api/">API</a></li>
-              <li><a href="/admin/">Admin</a></li>
+              <li><a href="/authors">{% trans 'Authors' %}</a></li>
+              <li><a href="/books">{% trans 'Books' %}</a></li>
+              <li><a href="/genres">{% trans 'Genres' %}</a></li>
+              <li><a target="_self" href="/api/">API</a></li>
+              <li><a target="_self" href="/admin/">Admin</a></li>
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
             {% if request.user.is_authenticated %}
-              <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-              <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
+                <li><a target="_self" href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                </li>
+                <li><a target="_self" href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
             {% else %}
-              <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-              <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
+                <li><a target="_self" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+                <li><a target="_self" href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
             {% endif %}
           </ul>
         </div>

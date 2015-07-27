@@ -3,6 +3,6 @@
         <p class="page-header">{{ genre.name }}</p>
         <h5>List of books with this genre</h5>
 
-        <p ng-repeat="book in genre.books_by_genre"><a href="#/books/{{ book.id }}">{{ book.title }}</a></p>
+        <p ng-repeat="book in genre.books_by_genre"><a href="/books/{{ book.id }}">{{ book.title }}</a></p>
     </div>
 </div>

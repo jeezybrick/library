@@ -7,8 +7,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-                  url('^', include('books_authors.library.urls', namespace='library')),
-
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 
@@ -20,6 +18,8 @@ urlpatterns = [
                   url(r'api/', include('books_authors.api.urls', namespace="api")),
                   url(r'api-auth/', include('rest_framework.urls', namespace="rest_framework")),
 
+                  url('^', include('books_authors.library.urls', namespace='library')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
@@ -30,4 +30,5 @@ if settings.DEBUG:
         url(r'^403/$', 'django.views.defaults.permission_denied'),
         url(r'^404/$', 'django.views.defaults.page_not_found'),
         url(r'^500/$', 'django.views.defaults.server_error'),
+
     ]

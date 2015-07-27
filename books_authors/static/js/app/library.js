@@ -8,7 +8,7 @@ library.config(function ($httpProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 });
 
-library.config(function ($routeProvider) {
+library.config(function ($routeProvider, $locationProvider) {
     // List routers
     $routeProvider.when('/authors', {
         templateUrl: '/static/templates/library/authors.html'
@@ -30,5 +30,9 @@ library.config(function ($routeProvider) {
     $routeProvider.when('/genres/:id', {
         templateUrl: '/static/templates/library/genre_detail.html'
     });
+
+    $routeProvider.otherwise('/books/');
+
+    $locationProvider.html5Mode({enabled: true, requireBase: false}).hashPrefix('!');
 
 });
