@@ -24,6 +24,9 @@ library.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/authors/:id', {
         templateUrl: '/static/templates/library/author_detail.html'
     });
+    $routeProvider.when('/authors/?page=:page', {
+        templateUrl: '/static/templates/library/author_detail.html'
+    });
     $routeProvider.when('/books/:id', {
         templateUrl: '/static/templates/library/book_detail.html'
     });

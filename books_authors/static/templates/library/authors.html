@@ -2,24 +2,24 @@
     <div class="col-md-4 col-md-offset-4">
         <h4 class="text-center page-header">List of all authors</h4>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <td>#</td>
-                <td>Name</td>
-            </tr>
-            </thead>
-            <tbody class="table-stripped">
-            <tr ng-repeat="author in authors">
-                <td>
-                    {{$index + 1}}
-                </td>
-                <td>
-                    <a href="/authors/{{ author.id }}">{{ author.name }}</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <p ng-repeat="author in authors" class="text-center"><a href="/authors/{{ author.id }}">{{ author.name }}</a>
+        </p>
+
+        <div class="text-center">
+            <ul ng-show="showPaginator" class="pagination pagination-sm">
+                <li>
+                    <a ng-show="previousExist" href="/authors/?page={{ previousPage }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="page in pages"><a href="/authors/?page={{ page }}">{{ page }}</a></li>
+                <li>
+                    <a ng-show="nextExist" href="/authors/?page={{ nextPage }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 </div>
