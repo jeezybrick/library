@@ -6,7 +6,7 @@ from books_authors.library.models import Author, Book, Genre
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ('id', 'name',)
+        fields = ('id', 'name', 'books_by_genre',)
         read_only_fields = ('id',)
         depth = 1
 
