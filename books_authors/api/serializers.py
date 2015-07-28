@@ -20,9 +20,21 @@ class AuthorSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class AuthorIdNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ('id', 'name',)
+
+
+class GenreIdNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ('id', 'name',)
+
+
 class BookSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField(read_only=True)
-    genre = serializers.StringRelatedField(many=True)
+    author = AuthorIdNameSerializer()
+    genre = GenreIdNameSerializer(many=True)
 
     class Meta:
         model = Book
