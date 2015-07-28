@@ -1,13 +1,41 @@
 'use strict';
 
-library.controller('genresCtrl', function ($scope, $http) {
+library.controller('genresCtrl', function ($scope, $http, $routeParams) {
     $scope.genres = [];
 
+    // Pagination
+    $scope.pages = [];
+    $scope.curPage = parseInt($routeParams.page) || 1;
+    $scope.nextPage = $scope.curPage + 1 || null;
+    $scope.previousPage = $scope.curPage - 1 || null;
+    $scope.GETUrl = '/api/genres/?format=json';
+
+    if ($routeParams.page) {
+        $scope.GETUrl += '&page=' + $scope.curPage;
+    }
+
+    // GET list of available authors
     $http
-        .get('/api/genres/?format=json')
-        .success(function (out_data) {
-            for (var i = 0; i < out_data.length; i++) {
-                $scope.genres.push(out_data[i]);
+        .get($scope.GETUrl)
+        .success(function (data) {
+            // Is previous (and next) page exists?
+            $scope.previousExist = !!data.previous;
+            $scope.nextExist = !!data.next;
+
+            $scope.previousAPIUrl = data.previous;
+            $scope.nextAPIUrl = data.next;
+
+            if (data.count > 15) {
+                $scope.showPaginator = true;
+                for (var i = 1; i <= data.last; i++) {
+                    $scope.pages.push(i);
+                }
+            } else {
+                $scope.showPaginator = false;
+            }
+
+            for (var i = 0; i < data.results.length; i++) {
+                $scope.genres.push(data.results[i]);
             }
         });
 });

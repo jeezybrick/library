@@ -25,6 +25,9 @@ library.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/genres', {
         templateUrl: '/static/templates/library/genres.html'
     });
+    $routeProvider.when('/genres/?page=:page', {
+        templateUrl: '/static/templates/library/genres.html'
+    });
 
     // Detail routers
     $routeProvider.when('/authors/:id', {

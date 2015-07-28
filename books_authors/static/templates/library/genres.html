@@ -5,5 +5,21 @@
         <div class="book-item" ng-repeat="genre in genres">
             <p class="text-center"><a href="/genres/{{ genre.id }}">{{ genre.name }}</a></p>
         </div>
+
+        <div class="text-center">
+            <ul ng-show="showPaginator" class="pagination pagination-sm">
+                <li>
+                    <a ng-show="previousExist" href="/genres/?page={{ previousPage }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="page in pages"><a href="/genres/?page={{ page }}">{{ page }}</a></li>
+                <li>
+                    <a ng-show="nextExist" href="/genres/?page={{ nextPage }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
