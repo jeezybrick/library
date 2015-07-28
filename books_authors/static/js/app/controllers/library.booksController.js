@@ -18,7 +18,6 @@ library.controller('booksCtrl', function ($scope, $http, $routeParams) {
     $http
         .get($scope.GETUrl)
         .success(function (data) {
-            console.log($scope.GETUrl);
             // Is previous (and next) page exists?
             $scope.previousExist = !!data.previous;
             $scope.nextExist = !!data.next;
