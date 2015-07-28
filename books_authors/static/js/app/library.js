@@ -13,7 +13,13 @@ library.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/authors', {
         templateUrl: '/static/templates/library/authors.html'
     });
+    $routeProvider.when('/authors/?page=:page', {
+        templateUrl: '/static/templates/library/authors.html'
+    });
     $routeProvider.when('/books', {
+        templateUrl: '/static/templates/library/books.html'
+    });
+    $routeProvider.when('/books/?page=:page', {
         templateUrl: '/static/templates/library/books.html'
     });
     $routeProvider.when('/genres', {
@@ -22,9 +28,6 @@ library.config(function ($routeProvider, $locationProvider) {
 
     // Detail routers
     $routeProvider.when('/authors/:id', {
-        templateUrl: '/static/templates/library/author_detail.html'
-    });
-    $routeProvider.when('/authors/?page=:page', {
         templateUrl: '/static/templates/library/author_detail.html'
     });
     $routeProvider.when('/books/:id', {

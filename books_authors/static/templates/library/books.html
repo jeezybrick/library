@@ -12,5 +12,21 @@
             </p>
             <hr>
         </div>
+
+        <div class="text-center">
+            <ul ng-show="showPaginator" class="pagination pagination-sm">
+                <li>
+                    <a ng-show="previousExist" href="/books/?page={{ previousPage }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="page in pages"><a href="/books/?page={{ page }}">{{ page }}</a></li>
+                <li>
+                    <a ng-show="nextExist" href="/books/?page={{ nextPage }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
