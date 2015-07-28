@@ -10,7 +10,7 @@ library.controller('authorsCtrl', function ($scope, $http, $routeParams) {
     $scope.curPage = parseInt($routeParams.page) || 1;
     $scope.nextPage = $scope.curPage + 1 || null;
     $scope.previousPage = $scope.curPage - 1 || null;
-    $scope.GETUrl = 'http://localhost:8000/api/authors/?format=json';
+    $scope.GETUrl = '/api/authors/?format=json';
 
     if ($routeParams.page) {
         $scope.GETUrl += '&page=' + $scope.curPage;
