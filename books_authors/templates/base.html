@@ -75,12 +75,14 @@
         <div class="container">
             {% if user.is_authenticated %}
             {% block content %}{% endblock content %}
-            {% else %}
-            {% block account_content %}
-            <h4 class="text-center">Only registered users allowed to use this site!</h4>
-            <p class="text-center">Please, <a target="_self" href="{% url 'account_login' %}">Login</a> or <a target="_self" href="{% url 'account_signup' %}">Sign Up</a>!</p>
-            {% endblock %}
             {% endif %}
+            {% block account_content %}
+                {% if not user.is_authenticated %}
+                    <h4 class="text-center">Only registered users allowed to use this site!</h4>
+                    <p class="text-center">Please, <a target="_self" href="{% url 'account_login' %}">Login</a> or <a
+                            target="_self" href="{% url 'account_signup' %}">Sign Up</a>!</p>
+                {% endif %}
+            {% endblock %}
 
         </div> <!-- /container -->
 
