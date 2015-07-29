@@ -51,6 +51,7 @@ LOCAL_APPS = (
     # Your stuff: custom apps go here
     'books_authors.library',
     'books_authors.api',
+    'books_authors.djangoratings',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
