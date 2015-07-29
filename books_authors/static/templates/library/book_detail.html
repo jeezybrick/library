@@ -3,6 +3,7 @@
         <h4 class="text-center page-header">{{ book.title }} by <a
                 href="/authors/{{ book.author.id }}">{{ book.author.name }}</a></h4>
 
+        <p><strong>Rating: </strong>{{ book.rating }}/5</p>
         <p class="text-center">Annotation</p>
 
         <p class="text-justify">
@@ -13,9 +14,9 @@
                 href="/genres/{{ genre.id }}">{{ genre.name }}</a><span ng-hide="$last">, </span></span>
         </p>
         <!-- Put this div tag to the place, where the Comments block will be -->
-        <div id="vk_comments"></div>
+        <!--div id="vk_comments"></div>
         <script type="text/javascript">
             VK.Widgets.Comments("vk_comments", {limit: 10, width: "665", attach: "*"});
-        </script>
+        </script-->
     </div>
 </div>

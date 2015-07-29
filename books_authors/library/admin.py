@@ -10,7 +10,12 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    fields = ('title',)
+    readonly_fields = ('_rating',)
+    list_display = ('_rating',)
+
+    def _rating(self, obj):
+        return obj.rating.get_rating()
 
 
 @admin.register(Genre)

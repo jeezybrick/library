@@ -36,8 +36,10 @@ class BookSerializer(serializers.ModelSerializer):
     author = AuthorIdNameSerializer()
     genre = GenreIdNameSerializer(many=True)
 
+    rating = serializers.ReadOnlyField(source='rating.get_rating')
+
     class Meta:
         model = Book
-        fields = ('id', 'title', 'author', 'annotation', 'genre',)
+        fields = ('id', 'title', 'author', 'annotation', 'genre', 'rating',)
         read_only_fields = ('id',)
         depth = 1
