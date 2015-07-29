@@ -1,6 +1,13 @@
 from rest_framework import serializers
 
-from books_authors.library.models import Author, Book, Genre
+from books_authors.library.models import Author, Book, Genre, Rate, Review
+from books_authors.users.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'last_login', 'is_staff')
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -21,12 +28,14 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class AuthorIdNameSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Author
         fields = ('id', 'name',)
 
 
 class GenreIdNameSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Genre
         fields = ('id', 'name',)
@@ -36,10 +45,8 @@ class BookSerializer(serializers.ModelSerializer):
     author = AuthorIdNameSerializer()
     genre = GenreIdNameSerializer(many=True)
 
-    rating = serializers.ReadOnlyField(source='rating.get_rating')
-
     class Meta:
         model = Book
-        fields = ('id', 'title', 'author', 'annotation', 'genre', 'rating',)
+        fields = ('id', 'title', 'author', 'annotation', 'genre', 'reviews_on_book', 'rate_set',)
         read_only_fields = ('id',)
-        depth = 1
+        depth = 2

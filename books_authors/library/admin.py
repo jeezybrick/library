@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Author, Book, Genre
+from .models import Author, Book, Genre, Review, Rate
 
 
 @admin.register(Author)
@@ -10,7 +10,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    fields = ('title',)
+    fields = ('author', 'title', 'annotation', 'genre',)
     readonly_fields = ('_rating',)
     list_display = ('_rating',)
 
@@ -20,4 +20,14 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Rate)
+class RateAdmin(admin.ModelAdmin):
     pass

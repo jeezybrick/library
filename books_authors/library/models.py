@@ -1,8 +1,8 @@
 from django.db import models
 
-from books_authors.djangoratings.fields import RatingField
-
 from mptt.models import MPTTModel, TreeForeignKey
+
+from books_authors.users.models import User
 
 
 class Author(models.Model):
@@ -33,7 +33,24 @@ class Book(models.Model):
     annotation = models.TextField()
     genre = models.ManyToManyField(Genre, related_name='books_by_genre')
 
-    rating = RatingField(range=5, can_change_vote=True, allow_anonymous=False)
-
     def __unicode__(self):
         return self.title
+
+
+class Rate(models.Model):
+    owner = models.ForeignKey(User)
+    value = models.PositiveIntegerField()
+    book = models.ForeignKey(Book)
+
+    def __unicode__(self):
+        return '{0} rated {1} for {2}'.format(self.owner, self.book, self.value)
+
+
+class Review(models.Model):
+    book = models.ForeignKey(Book, related_name='reviews_on_book')
+    text = models.TextField(max_length=140)
+    written_by = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '<{0}> by {1} on {2}.'.format(self.book, self.written_by, self.created_at)

@@ -3,7 +3,7 @@
         <h4 class="text-center page-header">{{ book.title }} by <a
                 href="/authors/{{ book.author.id }}">{{ book.author.name }}</a></h4>
 
-        <p><strong>Rating: </strong>{{ book.rating }}/5</p>
+        <p class="text-center"><strong>Rating: </strong>{{ book.rating }}/5</p>
         <p class="text-center">Annotation</p>
 
         <p class="text-justify">
@@ -13,6 +13,25 @@
         <p class="text-center">Genres: <span ng-repeat="genre in book.genre"><a
                 href="/genres/{{ genre.id }}">{{ genre.name }}</a><span ng-hide="$last">, </span></span>
         </p>
+
+        <div class="reviews">
+            <h5>Reviews:</h5>
+
+            <div ng-repeat="review in book.reviews_on_book" class="panel panel-default">
+                <div class="panel-heading">{{ review.written_by.username }} at {{ review.created_at | date }}</div>
+                <div class="panel-body">
+                    {{ review.text }}
+                </div>
+            </div>
+            <form name="review-form">
+                <div class="form-group">
+                    <label for="id_review_form">Leave a review:</label>
+                    <textarea id="id_review_form" class="form-control" rows="3"></textarea>
+                </div>
+                <input type="submit" class="form-control btn btn-primary" value="Submit">
+            </form>
+        </div>
+        <br><br><br><br>
         <!-- Put this div tag to the place, where the Comments block will be -->
         <!--div id="vk_comments"></div>
         <script type="text/javascript">
