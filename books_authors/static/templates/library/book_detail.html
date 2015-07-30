@@ -23,9 +23,12 @@
                     {{ review.text }}
                 </div>
             </div>
-            <form name="review-form">
+            <form name="review-form" method="post" action="/test-form/">
+
                 <div class="form-group">
                     <label for="id_review_form">Leave a review:</label>
+                    <input id="input-id" type="number" class="rating" min=0 max=5 step=1 data-size="xs"
+                           data-glyphicon="false">
                     <textarea id="id_review_form" class="form-control" rows="3"></textarea>
                 </div>
                 <input type="submit" class="form-control btn btn-primary" value="Submit">
@@ -37,5 +40,13 @@
         <script type="text/javascript">
             VK.Widgets.Comments("vk_comments", {limit: 10, width: "665", attach: "*"});
         </script-->
+        <script>
+            $(document).ready(function () {
+                $("#input-id").rating({
+                    showCaption: false,
+                    showClear: false
+                });
+            });
+        </script>
     </div>
 </div>
