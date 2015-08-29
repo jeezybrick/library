@@ -38,7 +38,7 @@ nosetests.xml
 *.pot
 
 # Pycharm
-.idea
+.idea/
 
 # Vim
 
