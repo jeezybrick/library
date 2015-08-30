@@ -14,7 +14,7 @@ REVIEW_RATES = (
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=255)
 
     def __unicode__(self):
         return self.name

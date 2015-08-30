@@ -2,11 +2,38 @@
 import json
 import codecs
 
-from termcolor import cprint
+from . import Author, Book, Genre
+import django
 
 from scrapy.log import logger
 
 
+class DBPipeline(object):
+
+    def __init__(self):
+        django.setup()
+
+    def process_item(self, item, spider):
+        author_name = item['author']
+        book_title = item['title'] if item['title'] is not u"None" else None
+        genres = item['genre'] if item['genre'] is not u"None" else None
+
+        author, created = Author.objects.get_or_create(name=author_name)
+        spider.logger.info("%s author saved to DB." % author_name)
+
+        if book_title is not None:
+            book, created = Book.objects.get_or_create(title=book_title, author=author)
+            spider.logger.info("%s book saved to DB." % book_title)
+
+            genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
+            book.genre.add(*genre_objects)
+            book.save()
+            spider.logger.info("%s genres has been added to %s book" % (', '.join(genres), book_title))
+
+        return item
+
+
+# Disabled for now
 class BookPipeline(object):
 
     def __init__(self):
@@ -95,13 +122,12 @@ class BookPipeline(object):
 
     def process_item(self, item, spider):
         self.format_item(dict(item))
-        cprint("Total amount of books: %d" % self.items, 'green')
         self.items += 1
         return item
 
     def close_spider(self, spider):
         # TODO: Make a pagination-like dump to file (to avoid large ones) (probably for 300 items ber *.json file)
         # TODO: Change this method to work directly with django models
-        # with codecs.open('books.json', 'w', encoding='utf-8') as result_file:
-        #     result_file.write(json.dumps(self.books, indent=4, ensure_ascii=False, sort_keys=True))
+        with codecs.open('books.json', 'w', encoding='utf-8') as result_file:
+            result_file.write(json.dumps(self.books, indent=4, ensure_ascii=False, sort_keys=True))
         pass

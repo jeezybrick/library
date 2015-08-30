@@ -15,7 +15,8 @@ SPIDER_MODULES = ['ereading.spiders']
 NEWSPIDER_MODULE = 'ereading.spiders'
 
 ITEM_PIPELINES = {
-    'ereading.pipelines.BookPipeline': 1,
+    # 'ereading.pipelines.BookPipeline': 1,
+    'ereading.pipelines.DBPipeline': 1,
 }
 
 
