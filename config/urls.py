@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-                  url(r'^test-form', ),
+    # url(r'^test-form', ),
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 
@@ -15,11 +15,11 @@ urlpatterns = [
     url(r'^users/', include("books_authors.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
-                  # REST Framework:
-                  url(r'api/', include('books_authors.api.urls', namespace="api")),
-                  url(r'api-auth/', include('rest_framework.urls', namespace="rest_framework")),
+    # REST Framework:
+    url(r'api/', include('books_authors.api.urls', namespace="api")),
+    url(r'api-auth/', include('rest_framework.urls', namespace="rest_framework")),
 
-                  url('^', include('books_authors.library.urls', namespace='library')),
+    url('^', include('books_authors.library.urls', namespace='library')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

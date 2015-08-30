@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-from ereading.utilites import get_url
-from ereading.items import BookItem
+from ..utilites import get_url
+from ..items import BookItem
 
 
 class BooksSpider(scrapy.Spider):
