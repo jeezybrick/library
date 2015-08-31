@@ -11,11 +11,11 @@ class DBPipeline(object):
 
     def __init__(self):
         django.setup()
-        self.debug = False
+        self.count = 0
 
     def process_item(self, item, spider):
 
-        if self.debug:
+        if self.count > 9:
             raise CloseSpider('DEBUG')
 
         author_name = item['author']
@@ -33,7 +33,7 @@ class DBPipeline(object):
             book.annotation = book_description
             book.save()
 
-        self.debug = True
+        self.count += 1
         return item
 
 
