@@ -28,13 +28,11 @@ class DBPipeline(object):
 
         if book_title is not None:
             book, created = Book.objects.get_or_create(title=book_title, author=author)
-            spider.logger.info("%s book saved to DB." % book_title)
 
             genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
             book.genre.add(*genre_objects)
             book.annotation = book_description
             book.save()
-            spider.logger.info("%s genres has been added to %s book" % (', '.join(genres), book_title))
 
         self.debug = True
         return item
