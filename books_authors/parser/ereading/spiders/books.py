@@ -52,7 +52,7 @@ class BooksSpider(scrapy.Spider):
         If we get no data from parse output, assign "None" to several field.
         """
         # TODO: Debug title (and possibly other fields (xpaths)) because it gives "None" too often
-        title = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "bookreader")]/text()'))
+        title = self.get_value(response.xpath('//h1/text()'))
         author = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "bookbyauthor")]/strong/text()'))
         series = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "series")]/text()'))
         average_rating = self.get_value(response.xpath('//span[@itemprop="average"]/text()'))
