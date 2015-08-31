@@ -19,8 +19,8 @@ class DBPipeline(object):
             raise CloseSpider('DEBUG')
 
         author_name = item['author']
-        book_title = item['title'] if item['title'] is not u"None" else None
-        genres = item['genre'] if item['genre'] is not u"None" else None
+        book_title = item['title']
+        genres = item['genre']
 
         author, created = Author.objects.get_or_create(name=author_name)
         spider.logger.info("%s author saved to DB." % author_name)
