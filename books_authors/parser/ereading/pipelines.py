@@ -23,10 +23,10 @@ class DBPipeline(object):
         book_description = item['description']
         genres = item['genre']
 
-        author, created = Author.objects.get_or_create(name=author_name)
+        author = Author.objects.get_or_create(name=author_name)[0]
 
         if book_title is not None:
-            book, created = Book.objects.get_or_create(title=book_title, author=author)
+            book = Book.objects.get_or_create(title=book_title, author=author)[0]
 
             genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
             book.genre.add(*genre_objects)
