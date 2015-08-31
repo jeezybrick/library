@@ -24,7 +24,7 @@ class BooksSpider(scrapy.Spider):
         elif len(result) > 1:
             return result
         else:
-            return "None"
+            return None
 
     def parse(self, response):
         """
@@ -59,5 +59,8 @@ class BooksSpider(scrapy.Spider):
         votes = self.get_value(response.xpath('//span[@itemprop="votes"]/text()'))
         genre = response.xpath('//table/tr/td/a[@itemprop="category genre"]/text()').extract()
 
-        yield BookItem(title=title, author=author, average_rating=average_rating, votes=votes, series=series,
-                       genre=genre)
+        if title and author and genre:
+            yield BookItem(title=title, author=author, average_rating=average_rating, votes=votes, series=series,
+                           genre=genre)
+        else:
+            self.logger.error('Got missing data. Skipping item.')
