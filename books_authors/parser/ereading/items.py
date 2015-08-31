@@ -15,4 +15,4 @@ class BookItem(scrapy.Item):
     votes = scrapy.Field()
     series = scrapy.Field()
     genre = scrapy.Field()
-    # description = scrapy.Field()
+    description = scrapy.Field()
