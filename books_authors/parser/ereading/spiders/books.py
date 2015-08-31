@@ -20,6 +20,11 @@ class BooksSpider(scrapy.Spider):
         """
         result = xpath.extract()
         if len(result) == 1:
+            # If it goes here, we assume that this is for authors names and the book titles
+            # So we need to reformat it a bit
+            if '+' in result[0]:  # 'Author1 + Author2' -> 'Author1, Author2'
+                multiple_authors = result[0].split(' + ')
+                return ', '.join(multiple_authors)
             return result[0]
         elif len(result) > 1:
             return result
@@ -51,7 +56,6 @@ class BooksSpider(scrapy.Spider):
         Parse the title, author, series etc. of the book.
         If we get no data from parse output, assign "None" to several field.
         """
-        # TODO: Debug title (and possibly other fields (xpaths)) because it gives "None" too often
         title = self.get_value(response.xpath('//h1/text()'))
         author = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "bookbyauthor")]/strong/text()'))
         series = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "series")]/text()'))
