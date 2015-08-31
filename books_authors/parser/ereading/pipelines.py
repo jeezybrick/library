@@ -2,18 +2,22 @@
 import json
 import codecs
 
-from . import Author, Book, Genre
+from . import Author, Book, Genre, DEBUG
 import django
-
-from scrapy.log import logger
+from scrapy.exceptions import CloseSpider
 
 
 class DBPipeline(object):
 
     def __init__(self):
         django.setup()
+        self.debug = DEBUG
 
     def process_item(self, item, spider):
+
+        if self.debug:
+            raise CloseSpider('DEBUG')
+
         author_name = item['author']
         book_title = item['title'] if item['title'] is not u"None" else None
         genres = item['genre'] if item['genre'] is not u"None" else None
@@ -30,8 +34,8 @@ class DBPipeline(object):
             book.save()
             spider.logger.info("%s genres has been added to %s book" % (', '.join(genres), book_title))
 
+        self.debug = True
         return item
-
 
 # Disabled for now
 class BookPipeline(object):
