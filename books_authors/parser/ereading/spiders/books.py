@@ -59,12 +59,13 @@ class BooksSpider(scrapy.Spider):
         title = self.get_value(response.xpath('//h1/text()'))
         author = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "bookbyauthor")]/strong/text()'))
         series = self.get_value(response.xpath('//table/tr/td/a[contains(@href, "series")]/text()'))
+        description = '\n'.join(response.xpath('//span[@itemprop="description"]/text()').extract())
         average_rating = self.get_value(response.xpath('//span[@itemprop="average"]/text()'))
         votes = self.get_value(response.xpath('//span[@itemprop="votes"]/text()'))
         genre = response.xpath('//table/tr/td/a[@itemprop="category genre"]/text()').extract()
 
         if title and author and genre:
             yield BookItem(title=title, author=author, average_rating=average_rating, votes=votes, series=series,
-                           genre=genre)
+                           genre=genre, description=description)
         else:
             self.logger.error('Got missing data. Skipping item.')

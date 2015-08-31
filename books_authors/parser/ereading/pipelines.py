@@ -20,6 +20,7 @@ class DBPipeline(object):
 
         author_name = item['author']
         book_title = item['title']
+        book_description = item['description']
         genres = item['genre']
 
         author, created = Author.objects.get_or_create(name=author_name)
@@ -31,6 +32,7 @@ class DBPipeline(object):
 
             genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
             book.genre.add(*genre_objects)
+            book.annotation = book_description
             book.save()
             spider.logger.info("%s genres has been added to %s book" % (', '.join(genres), book_title))
 
