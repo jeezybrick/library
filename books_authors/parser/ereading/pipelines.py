@@ -37,6 +37,7 @@ class DBPipeline(object):
         self.debug = True
         return item
 
+
 # Disabled for now
 class BookPipeline(object):
 
