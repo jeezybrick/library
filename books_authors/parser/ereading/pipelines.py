@@ -2,7 +2,7 @@
 import json
 import codecs
 
-from . import Author, Book, Genre, DEBUG
+from . import Author, Book, Genre
 import django
 from scrapy.exceptions import CloseSpider
 
@@ -11,7 +11,7 @@ class DBPipeline(object):
 
     def __init__(self):
         django.setup()
-        self.debug = DEBUG
+        self.debug = False
 
     def process_item(self, item, spider):
 
