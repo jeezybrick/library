@@ -24,7 +24,6 @@ class DBPipeline(object):
         genres = item['genre']
 
         author, created = Author.objects.get_or_create(name=author_name)
-        spider.logger.info("%s author saved to DB." % author_name)
 
         if book_title is not None:
             book, created = Book.objects.get_or_create(title=book_title, author=author)
