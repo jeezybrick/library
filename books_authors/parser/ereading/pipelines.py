@@ -4,32 +4,37 @@ import codecs
 
 from . import Author, Book, Genre
 import django
-
-from scrapy.log import logger
+from scrapy.exceptions import CloseSpider
 
 
 class DBPipeline(object):
 
     def __init__(self):
         django.setup()
+        self.count = 0
 
     def process_item(self, item, spider):
-        author_name = item['author']
-        book_title = item['title'] if item['title'] is not u"None" else None
-        genres = item['genre'] if item['genre'] is not u"None" else None
 
-        author, created = Author.objects.get_or_create(name=author_name)
-        spider.logger.info("%s author saved to DB." % author_name)
+        if self.count > 9:
+            raise CloseSpider('DEBUG')
+
+        author_name = item['author']
+        book_title = item['title']
+        book_description = item['description']
+        genres = item['genre']
+
+        author = Author.objects.get_or_create(name=author_name)[0]
 
         if book_title is not None:
-            book, created = Book.objects.get_or_create(title=book_title, author=author)
-            spider.logger.info("%s book saved to DB." % book_title)
+            book = Book.objects.get_or_create(title=book_title, author=author)[0]
 
             genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
             book.genre.add(*genre_objects)
+            if book_description:
+                book.annotation = book_description
             book.save()
-            spider.logger.info("%s genres has been added to %s book" % (', '.join(genres), book_title))
 
+        self.count += 1
         return item
 
 
