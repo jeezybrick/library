@@ -30,7 +30,8 @@ class DBPipeline(object):
 
             genre_objects = [Genre.objects.get_or_create(name=genre_name)[0] for genre_name in genres if genres]
             book.genre.add(*genre_objects)
-            book.annotation = book_description
+            if book_description:
+                book.annotation = book_description
             book.save()
 
         self.count += 1
