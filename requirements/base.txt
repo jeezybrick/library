@@ -6,6 +6,8 @@ django-environ==0.3.0
 django-secure==1.0.1
 whitenoise==2.0.2
 
+# Admin
+django-suit==0.2.14
 
 # Tree models
 django-mptt
