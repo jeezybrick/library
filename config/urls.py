@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-
+    # url(r'^test-form', ),
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 
