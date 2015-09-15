@@ -10,6 +10,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
+    search_fields = ('author__name', 'title', )
+    list_display = ('author', 'title', )
     fields = ('author', 'title', 'annotation', 'genre',)
 
 
