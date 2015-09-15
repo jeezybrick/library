@@ -40,8 +40,6 @@ class Book(models.Model):
     author = models.ForeignKey(Author, related_name='books_by_author')
     annotation = models.TextField()
     genre = models.ManyToManyField(Genre, related_name='books_by_genre')
-    rate = models.PositiveIntegerField(choices=REVIEW_RATES, default=3)
-    votes = models.PositiveIntegerField(default=0)
 
     def __unicode__(self):
         return self.title
@@ -54,4 +52,4 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return '<{0}> by {1} on {2}, rate: {3}.'.format(self.book, self.written_by, self.created_at, self.rate)
+        return '<{0}> by {1} on {2}'.format(self.book, self.written_by, self.created_at)
