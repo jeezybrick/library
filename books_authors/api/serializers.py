@@ -60,7 +60,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'title', 'author', 'annotation', 'genre', 'reviews_on_book', 'average_rating',)
+        fields = ('id', 'title', 'author', 'annotation', 'genre', 'reviews', 'average_rating',)
         read_only_fields = ('id',)
         depth = 2
 

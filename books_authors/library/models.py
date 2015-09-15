@@ -46,6 +46,23 @@ class Book(models.Model):
         average_rating = Rating.objects.filter(book=self).aggregate(Avg('value'))
         return average_rating.get('value__avg')
 
+    @property
+    def reviews(self):
+        output_reviews = []
+        reviews = Review.objects.filter(book=self)
+        for review in reviews:
+            username = review.written_by.username
+            text = review.text
+
+            try:
+                rate = Rating.objects.get(user=review.written_by).value
+            except Exception, e:
+                rate = 0
+
+            output_reviews.append(dict(username=username, text=text, rate=rate))
+
+        return output_reviews
+
     def __unicode__(self):
         return self.title
 
