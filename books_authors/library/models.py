@@ -68,7 +68,7 @@ class Book(models.Model):
 
 
 class Rating(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     book = models.ForeignKey(Book)
     value = models.PositiveIntegerField()
 
