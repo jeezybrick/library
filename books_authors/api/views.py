@@ -2,10 +2,11 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
-from .serializers import GenreSerializer, BookSerializer, AuthorSerializer, UserSerializer, ReviewSerializer
+from .serializers import GenreSerializer, BookSerializer, AuthorSerializer, UserSerializer, ReviewSerializer, \
+    RatingSerializer
 from .permissions import IsAuthenticatedReadOnly
 
-from books_authors.library.models import Genre, Author, Book, Review
+from books_authors.library.models import Genre, Author, Book, Review, Rating
 from books_authors.users.models import User
 
 
@@ -33,3 +34,8 @@ class BookViewSet(viewsets.ModelViewSet):
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer

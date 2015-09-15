@@ -11,6 +11,7 @@ router.register(r'books', views.BookViewSet)
 router.register(r'genres', views.GenreViewSet)
 router.register(r'reviews', views.ReviewViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'rating', views.RatingViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
