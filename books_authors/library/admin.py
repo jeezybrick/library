@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Author, Book, Genre, Review
+from .models import Author, Book, Genre, Review, Rating
 
 
 @admin.register(Author)
@@ -23,3 +23,8 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    search_fields = ('book__title', 'user__username', )
