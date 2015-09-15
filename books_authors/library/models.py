@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.db.models import Avg
 from mptt.models import MPTTModel, TreeForeignKey
 
 from books_authors.users.models import User
@@ -40,6 +40,11 @@ class Book(models.Model):
     author = models.ForeignKey(Author, related_name='books_by_author')
     annotation = models.TextField()
     genre = models.ManyToManyField(Genre, related_name='books_by_genre')
+
+    @property
+    def average_rating(self):
+        average_rating = Rating.objects.filter(book=self).aggregate(Avg('value'))
+        return average_rating.get('value__avg')
 
     def __unicode__(self):
         return self.title
