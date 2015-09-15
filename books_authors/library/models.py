@@ -45,6 +45,15 @@ class Book(models.Model):
         return self.title
 
 
+class Rating(models.Model):
+    user = models.ForeignKey(User)
+    book = models.ForeignKey(Book)
+    value = models.PositiveIntegerField()
+
+    def __unicode__(self):
+        return '{0} rated {1} for {2}'.format(self.user, self.book, self.value)
+
+
 class Review(models.Model):
     book = models.ForeignKey(Book, related_name='reviews_on_book')
     text = models.TextField(max_length=140)
