@@ -42,9 +42,11 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, related_name='books_by_genre')
 
     @property
-    def average_rating(self):
-        average_rating = Rating.objects.filter(book=self).aggregate(Avg('value'))
-        return average_rating.get('value__avg')
+    def rating(self):
+        filtered_query = Rating.objects.filter(book=self)
+        average_rating = filtered_query.aggregate(Avg('value')).get('value__avg')
+        total_rates = filtered_query.count()
+        return dict(average_rating=average_rating, amount_of_rates=total_rates)
 
     @property
     def reviews(self):
@@ -57,7 +59,7 @@ class Book(models.Model):
             try:
                 rate = Rating.objects.get(user=review.written_by).value
             except Exception, e:
-                rate = 0
+                rate = None
 
             output_reviews.append(dict(username=username, text=text, rate=rate))
 
