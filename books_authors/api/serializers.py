@@ -41,12 +41,6 @@ class AuthorIdNameSerializer(serializers.ModelSerializer):
         fields = ('id', 'name',)
 
 
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        depth = 1
-
-
 class GenreIdNameSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -70,6 +64,15 @@ class BookIDTitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id', 'title', )
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+
+    written_by = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    class Meta:
+        model = Review
+        fields = ('book', 'written_by', 'text', )
 
 
 class RatingSerializer(serializers.ModelSerializer):
