@@ -1,9 +1,24 @@
 <div class="row" ng-controller="bookDetailCtrl">
+    <script>
+        // Rating stars setup
+        $(document).ready(function () {
+            $("#input-id").rating({
+                showCaption: false,
+                showClear: false
+            });
+            $("#rating-by-user").rating({
+                showCaption: false,
+                showClear: false,
+                readonly: true,
+                size: 'xs'
+            });
+        });
+    </script>
     <div class="col-md-6 col-md-offset-3">
         <h4 class="text-center page-header">{{ book.title }} by <a
                 href="/authors/{{ book.author.id }}">{{ book.author.name }}</a></h4>
 
-        <p class="text-center"><strong>Rating: </strong>{{ book.rating }}/5</p>
+        <p class="text-center"><strong>Rating: </strong>{{ book.rating.average_rating }}/5 (Votes: {{ book.rating.amount_of_rates}})</p>
         <p class="text-center">Annotation</p>
 
         <p class="text-justify">
@@ -15,16 +30,18 @@
         </p>
 
         <div class="reviews">
-            <h5>Reviews:</h5>
-
-            <div ng-repeat="review in book.reviews_on_book" class="panel panel-default">
-                <div class="panel-heading">{{ review.written_by.username }} at {{ review.created_at | date }}</div>
+            <div ng-repeat="review in book.reviews" class="panel panel-default">
+                <div class="panel-heading">
+                    {{ review.username }} at {{ review.created_at | date }}
+                    <input id="rating-by-user" type="number" value="{{review.rate}}" class="rating" min=0 max=5 step=1 data-size="xs"
+                           data-glyphicon="false">
+                </div>
                 <div class="panel-body">
                     {{ review.text }}
                 </div>
             </div>
             <form name="review-form" method="post" action="/test-form/">
-
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="id_review_form">Leave a review:</label>
                     <input id="input-id" type="number" class="rating" min=0 max=5 step=1 data-size="xs"
@@ -34,19 +51,5 @@
                 <input type="submit" class="form-control btn btn-primary" value="Submit">
             </form>
         </div>
-        <br><br><br><br>
-        <!-- Put this div tag to the place, where the Comments block will be -->
-        <!--div id="vk_comments"></div>
-        <script type="text/javascript">
-            VK.Widgets.Comments("vk_comments", {limit: 10, width: "665", attach: "*"});
-        </script-->
-        <script>
-            $(document).ready(function () {
-                $("#input-id").rating({
-                    showCaption: false,
-                    showClear: false
-                });
-            });
-        </script>
     </div>
 </div>
