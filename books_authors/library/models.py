@@ -55,13 +55,14 @@ class Book(models.Model):
         for review in reviews:
             username = review.written_by.username
             text = review.text
+            created_at = review.created_at
 
             try:
                 rate = Rating.objects.get(user=review.written_by).value
             except Exception, e:
                 rate = None
 
-            output_reviews.append(dict(username=username, text=text, rate=rate))
+            output_reviews.append(dict(username=username, text=text, rate=rate, created_at=created_at))
 
         return output_reviews
 
