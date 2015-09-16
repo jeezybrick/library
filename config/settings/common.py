@@ -231,6 +231,18 @@ LOGIN_URL = 'account_login'
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 
+# ADMIN SUITE CONFIGURATION
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'LIBRARY',
+    'MENU_ICONS': {
+        'auth': 'icon-lock',
+        'sites': 'icon-globe',
+        'users': 'icon-user',
+        'library': 'icon-book',
+    }
+}
+
+
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
