@@ -24,18 +24,23 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
-    def create(self, request, *args, **kwargs):
-            text = request.data.get('text', None)
-            book = get_object_or_404(Book, id=request.data.get('book', None))
-            user = get_object_or_404(User, id=request.user.pk)
-            review = Review(text=text, book=book, written_by=user)
+    def gather_data_from_request(self, request):
+        """
+        Reformat and gathers data (including user id) from request
+        """
+        data = dict()
+        for key, value in request.data.items():
+            data.update({key: value})
+        data.update(user=request.user.pk)
 
-            try:
-                review.full_clean()
-                review.save()
-                return Response(data=review, status=status.HTTP_201_CREATED)
-            except Exception, e:
-                return Response(data=dict(error=str(e)), status=status.HTTP_400_BAD_REQUEST)
+        return data
+
+    def create(self, request, *args, **kwargs):
+        data = self.gather_data_from_request(request)
+        serializer = self.serializer_class(data=data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class GenreViewSet(viewsets.ModelViewSet):
