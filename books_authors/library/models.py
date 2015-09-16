@@ -82,7 +82,7 @@ class Rating(models.Model):
 class Review(models.Model):
     book = models.ForeignKey(Book, related_name='reviews_on_book')
     text = models.TextField(max_length=140)
-    written_by = models.ForeignKey(User, related_name='reviews_by_user')
+    user = models.ForeignKey(User, related_name='reviews_by_user')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
