@@ -71,9 +71,12 @@ class Book(models.Model):
 
 
 class Rating(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     book = models.ForeignKey(Book)
     value = models.PositiveIntegerField()
+
+    class Meta:
+        unique_together = ('book', 'user', )
 
     def __unicode__(self):
         return '{0} rated {1} for {2}'.format(self.user, self.book, self.value)
