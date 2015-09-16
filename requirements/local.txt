@@ -17,3 +17,4 @@ djangular==0.2.7
 
 # Fixtures
 model-mommy==1.2.5
+fake-factory==0.5.2
