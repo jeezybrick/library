@@ -53,12 +53,12 @@ class Book(models.Model):
         output_reviews = []
         reviews = Review.objects.filter(book=self)
         for review in reviews:
-            username = review.written_by.username
+            username = review.user.username
             text = review.text
             created_at = review.created_at
 
             try:
-                rate = Rating.objects.get(user=review.written_by).value
+                rate = Rating.objects.get(user=review.user).value
             except Exception, e:
                 rate = None
 
@@ -86,4 +86,4 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return '<{0}> by {1} on {2}'.format(self.book, self.written_by, self.created_at)
+        return '<{0}> by {1} on {2}'.format(self.book, self.user, self.created_at)
