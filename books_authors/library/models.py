@@ -39,7 +39,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Author, related_name='books_by_author')
     annotation = models.TextField()
-    genre = models.ManyToManyField(Genre, related_name='books_by_genre')
+    genre = models.ManyToManyField(Genre, related_name='books_by_genre', blank=True)
 
     @property
     def rating(self):
