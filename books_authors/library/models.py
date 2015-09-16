@@ -85,5 +85,8 @@ class Review(models.Model):
     user = models.ForeignKey(User, related_name='reviews_by_user')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('book', 'user', )
+
     def __unicode__(self):
         return '<{0}> by {1} on {2}'.format(self.book, self.user, self.created_at)
