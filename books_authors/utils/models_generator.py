@@ -78,6 +78,7 @@ class LibraryGenerator(object):
                     'genre': [choice(self.genres)]
                 }
                 book = mommy.make(Book, **options)
+                self.books.append(book)
                 print 'Successfully generated "{0}" book, author: {1}'.format(book.title, book.author.name)
             except Exception, e:
                 print e
@@ -96,11 +97,10 @@ class LibraryGenerator(object):
         for _ in range(number_of_reviews):
             options = {
                 'book': choice(self.books),
-                'text': self.get_random_text(),
                 'user': choice(self.users)
             }
             try:
-                review = mommy.make(Review, **options)
+                review = mommy.make(Review, text=self.get_random_text(), **options)
                 rating = mommy.make(Rating, value=randint(1, 5), **options)
                 print 'Successfully generated review for "{0} book with rating {1}, user: {2}.'.format(
                     review.book.title,
