@@ -25,7 +25,7 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('book', 'user', 'text')
-    search_fields = ('book', 'user', 'text')
+    search_fields = ('book__title', 'user__username', 'text')
 
 
 @admin.register(Rating)
